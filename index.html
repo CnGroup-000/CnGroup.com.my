@@ -1,190 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
-  <style>
-    body {
-      font-family: "Open Sans", Helvetica, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #2e3842;
-    }
-
-    #overlay {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://drive.google.com/uc?export=download&id=1Z6MHdXJbYlSZR5wpNmL-sdPr6BqeJTUJ");
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://drive.google.com/uc?export=download&id=1Z6MHdXJbYlSZR5wpNmL-sdPr6BqeJTUJ");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transition: opacity 3s ease;
-      z-index: 1;
-    }
-
-    #container {
-      position: fixed; /* 将位置设置为固定 */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: max-content;
-      padding: 20px;
-      background-color: transparent;
-      z-index: 2;
-    }
-
-    #text {
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 2px; /* Increase letter spacing */
-      margin-bottom: 30px;
-      position: relative;
-      top: -40px;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: transform 0.5s ease,opacity 0.2s ease;
-      color: white;
-    }
-
-    #line1 {
-      position: absolute;
-      left: 0;
-      height: 2px;
-      background-color: white;
-      transition: width 0.9s ease;
-      top: calc(50% - 85px);
-      width: 0;
-      transition-delay: 0.5s; /* Delay the line animation */
-    }
-
-    #line2 {
-      position: absolute;
-      right: 0;
-      height: 2px;
-      background-color: white;
-      transition: width 0.9s ease;
-      top: calc(50% - 25px);
-      width: 0;
-      transition-delay: 0.5s; /* Delay the line animation */
-    }
-
-    #footer {
-      display: none; /* 初始状态下隐藏 */
-      position: fixed;
-      bottom: 200px;
-      font-size: 14px;
-      color: gray;
-      cursor: pointer;
-      animation: blink 1s infinite;
-      z-index: 2; /* 确保位于最上层 */
-    }
-
-    @keyframes blink {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-
-    #footer:hover {
-      font-size: 16px;
-      animation: none; /* Stop blinking animation on hover */
-    }
-
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Login Page</title>
 </head>
 <body>
-  <div id="overlay"></div>
-  <div id="container">
-    <div id="text">CNGROUP</div>
-    <div id="line1"></div>
-    <div id="line2"></div>
+  <!-- Your HTML content for the login page goes here -->
+  <div class="scroll-down">SCROLL DOWN
+    <!-- SVG code for the scroll-down indicator -->
   </div>
-
-  <div id="footer">Press to continue</div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var line1 = document.getElementById('line1');
-      var line2 = document.getElementById('line2');
-      var text = document.getElementById('text');
-      var footer = document.getElementById('footer');
-      var overlay = document.getElementById('overlay');
-
-      var textWidth = text.offsetWidth;
-      var lineLength = textWidth + 20; // slightly longer than the total width of the text
-
-      line1.style.width = lineLength + 'px';
-      line2.style.width = lineLength + 'px';
-
-      text.style.opacity = '1';
-      text.style.transform = 'scale(1)';
-      line1.style.width = '100%';
-      line2.style.width = '100%';
-
-      setTimeout(function() {
-        footer.style.display = 'block'; // 2 seconds later, display the footer
-      }, 3000);
-
-      setTimeout(function() {
-        overlay.style.opacity = '1';
-      }, 1000);
-
-      // Add click event to the overlay
-      footer.addEventListener('click', showLoginPage);
-    });
-    
-    function showLoginPage() {
-      var loginPage = document.createElement('div');
-      loginPage.style.position = 'fixed';
-      loginPage.style.top = '0';
-      loginPage.style.left = '0';
-      loginPage.style.width = '100%';
-      loginPage.style.height = '100%';
-      loginPage.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-      loginPage.style.display = 'flex';
-      loginPage.style.alignItems = 'center';
-      loginPage.style.justifyContent = 'center';
-      loginPage.style.zIndex = '3';
-      
-      var input = document.createElement('input');
-      input.type = 'text';
-      input.placeholder = 'Enter your ID';
-      
-      var confirmButton = document.createElement('button');
-      confirmButton.innerText = 'Confirm';
-      confirmButton.addEventListener('click', redirectToURLAndRunScript);
-      
-      loginPage.appendChild(input);
-      loginPage.appendChild(confirmButton);
-      document.body.appendChild(loginPage);
-    }
-    
-    function redirectToURLAndRunScript() {
-      // Here you can add code to validate the ID
-      // If the ID is valid, redirect the user
-      var idInput = document.querySelector('input[type="text"]');
-      var id = idInput.value;
-      if (id) {
-        // Redirect the user to the URL
-        window.location.href = "https://script.google.com/macros/s/AKfycbx1qUoG0xKdm5r1s90RY7jH1VfFGaENCWkOd70L5AieT54O5z03IOKoIu3HnxIbWEb0Gg/exec";
-      }
-    }
-
-  </script>
+  <div class="container"></div>
+  <div class="modal">
+    <!-- Modal content goes here -->
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
